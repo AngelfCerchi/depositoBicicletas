@@ -87,5 +87,6 @@ describe "Test de depositos"{
   		assert.equals(1,depositoTres.cantidadBicisSinAccesorios())
 	}
 	// Falta agregat test bicicletaLarga con accesorios
+	// Agregar test bicis companieras
 	
 }
