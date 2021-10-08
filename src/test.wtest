@@ -1,7 +1,8 @@
 import bicicletas.*
 import accesorios.*
+import depositos.*
 
-describe "Test bicicletas"{
+describe "Test Bicicletas"{
 	//Accesorios
 	const farolito = new Farolitos()
 	const canastoDos = new Canastos(volumen = 8)
@@ -38,4 +39,53 @@ describe "Test bicicletas"{
 		assert.equals(0,bicicletaTres.cantAccLivianos())
 	}
 
+}
+
+describe "Test de depositos"{
+	//Accesorios
+	const farolito = new Farolitos()
+	const canastoDos = new Canastos(volumen = 8)
+	const morralDos = new Morrales(largo=21,ojoDeGato = true)
+	const morralTres = new Morrales(largo=6,ojoDeGato = false)
+	
+	//Bicicletas
+	const bicicletaUno = new Bicicletas(rodado=28,largo=150,marca="Olmo",accesorios=[farolito])
+	const bicicletaDos = new Bicicletas(rodado=26,largo=110,marca="Legnano",accesorios=[farolito,canastoDos,morralDos]) 
+	const bicicletaTres = new Bicicletas(rodado=20,largo=80,marca="Legnano",accesorios=[morralTres])
+	const bicicletaCuatro = new Bicicletas(rodado = 28, largo = 180,marca="Olmo")
+	const depositoUno = new Depositos(todasLasBicis=[bicicletaUno,bicicletaDos,bicicletaTres])
+	const depositoDos = new Depositos(todasLasBicis=[bicicletaUno,bicicletaDos])
+	const depositoTres = new Depositos(todasLasBicis=[bicicletaCuatro])
+	
+	test "Deposito no Nocturno"{
+		assert.equals([bicicletaUno,bicicletaDos],depositoUno.bicisRapidas())
+		assert.equals(#{"Olmo","Legnano"},depositoUno.todasLasMarcas())
+		assert.notThat(depositoUno.esNocturno())
+		assert.that(depositoUno.tieneBiciParaLlevar(10))
+		assert.notThat(depositoUno.tieneBiciParaLlevar(50))
+		assert.equals(0,depositoUno.cargaTotalBicisLargas())
+		assert.equals(0,depositoUno.cantidadBicisSinAccesorios())
+	
+	}
+	test "Deposito Nocturno"{
+		assert.equals([bicicletaUno,bicicletaDos],depositoDos.bicisRapidas())
+		assert.equals(#{"Olmo","Legnano"},depositoDos.todasLasMarcas())
+		assert.that(depositoDos.esNocturno())
+		assert.that(depositoDos.tieneBiciParaLlevar(10))	
+  		assert.notThat(depositoDos.tieneBiciParaLlevar(50))
+  		assert.equals(0,depositoDos.cargaTotalBicisLargas())
+  		assert.equals(0,depositoDos.cantidadBicisSinAccesorios())
+  		
+	}
+	test "Deposito no nocturno - biciLarga"{
+		assert.equals([bicicletaCuatro],depositoTres.bicisRapidas())
+		assert.equals(#{"Olmo"},depositoTres.todasLasMarcas())
+		assert.notThat(depositoTres.esNocturno())
+		assert.notThat(depositoTres.tieneBiciParaLlevar(10))	
+  		assert.notThat(depositoTres.tieneBiciParaLlevar(50))
+  		assert.equals(0,depositoTres.cargaTotalBicisLargas())
+  		assert.equals(1,depositoTres.cantidadBicisSinAccesorios())
+	}
+	// Falta agregat test bicicletaLarga con accesorios
+	
 }
