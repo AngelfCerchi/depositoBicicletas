@@ -1,0 +1,41 @@
+import bicicletas.*
+import accesorios.*
+
+describe "Test bicicletas"{
+	//Accesorios
+	const farolito = new Farolitos()
+	const canastoDos = new Canastos(volumen = 8)
+	const morralDos = new Morrales(largo=21,ojoDeGato = true)
+	const morralTres = new Morrales(largo=6,ojoDeGato = false)
+	
+	//Bicicletas
+	const bicicletaUno = new Bicicletas(rodado=28,largo=150,marca="Olmo",accesorios=[farolito])
+	const bicicletaDos = new Bicicletas(rodado=26,largo=110,marca="Legnano",accesorios=[farolito,canastoDos,morralDos]) 
+	const bicicletaTres = new Bicicletas(rodado=20,largo=80,marca="Legnano",accesorios=[morralTres])
+	
+	test "biciletaUno"{
+		assert.equals(85,bicicletaUno.altura())
+		assert.equals(30,bicicletaUno.velocidadCrucero()) // esta mal el enunciado velCrucero = 30
+		assert.equals(0,bicicletaUno.carga())
+		assert.equals(14.5,bicicletaUno.peso())
+		assert.that(bicicletaUno.tieneLuz())
+		assert.equals(1,bicicletaUno.cantAccLivianos())
+	}
+	test "bicicletaDos"{
+		assert.equals(80,bicicletaDos.altura())
+		assert.equals(28,bicicletaDos.velocidadCrucero()) 
+		assert.equals(23,bicicletaDos.carga())
+		assert.equals(15.5,bicicletaDos.peso())
+		assert.that(bicicletaDos.tieneLuz())
+		assert.equals(2,bicicletaDos.cantAccLivianos())
+	}
+	test "bicicletaTres"{
+		assert.equals(65,bicicletaTres.altura())
+		assert.equals(22,bicicletaTres.velocidadCrucero()) 
+		assert.equals(2,bicicletaTres.carga())
+		assert.equals(11.2,bicicletaTres.peso())
+		assert.notThat(bicicletaTres.tieneLuz())
+		assert.equals(0,bicicletaTres.cantAccLivianos())
+	}
+
+}
