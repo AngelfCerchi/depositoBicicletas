@@ -17,3 +17,8 @@ class Morrales{
 	const property carga = largo/3
 	const property esLuminoso = ojoDeGato 
 }
+
+/*
+ * Para agregar otros accesorios se deberia crear una clase accesorios con las caracteristiscas que comparte
+ * 
+ */

@@ -12,4 +12,16 @@ class Depositos{
 	method cargaTotalBicisLargas() = self.bicisMasLargas().sum({ b => b.carga() })
 	method cantidadBicisSinAccesorios() = todasLasBicis.count({ b => b.accesorios().isEmpty() })
 	
+	
+	method bicisCompanieras(bici){
+		const nuevaLista = []
+		nuevaLista.addAll(todasLasBicis)
+		nuevaLista.remove(bici)		
+		//const filtroMarca = nuevaLista.filter({ b => b.marca() == bici.marca() and b.largo().between(bici.largo()-10,bici.largo()+10) })
+		//return filtroMarca.filter({ b => b.largo().between(bici.largo()-10,bici.largo()+10) })
+		return nuevaLista.filter({ b => b.marca() == bici.marca() and b.largo().between(bici.largo()-10,bici.largo()+10) })
+	}
+	
+	
+	
 }
