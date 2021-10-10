@@ -1,13 +1,16 @@
 import bicicletas.*
 import accesorios.*
+import parDeBicis.*
 class Depositos{
 	const property todasLasBicis = []
+	
 	var property seHizoLaLuz = true
+	
+	//DESAFIO
 	method agregarBicicleta(bici){
 		if (todasLasBicis.count({ b => b.tieneLuz()}) == 0 and bici.tieneLuz()){
 			seHizoLaLuz = true
 			todasLasBicis.add(bici)
-			
 		}else{
 			if(bici.tieneLuz()){
 				todasLasBicis.add(bici)
@@ -26,18 +29,26 @@ class Depositos{
 	method bicisMasLargas() = todasLasBicis.filter({ b => b.largo() > 170 })
 	method cargaTotalBicisLargas() = self.bicisMasLargas().sum({ b => b.carga() })
 	method cantidadBicisSinAccesorios() = todasLasBicis.count({ b => b.accesorios().isEmpty() })
-	method biciCompa(bici) = todasLasBicis.find({ b => b.marca() == bici.marca() and b.largo().between(bici.largo()-10,bici.largo()+10) })
+
 	
-	/*method bicisCompanieras(bici){
-		
+	method bicisCompanieras(bici){
 		const nuevaLista = []
 		nuevaLista.addAll(todasLasBicis)
 		nuevaLista.remove(bici)		
-		//const filtroMarca = nuevaLista.filter({ b => b.marca() == bici.marca() and b.largo().between(bici.largo()-10,bici.largo()+10) })
-		//return filtroMarca.filter({ b => b.largo().between(bici.largo()-10,bici.largo()+10) })
 		return nuevaLista.filter({ b => b.marca() == bici.marca() and b.largo().between(bici.largo()-10,bici.largo()+10) })
-	}*/
+	}
 	
-	//method tieneParDeBicis() = self.bicisCompanieras(todasLasBicis.forEach({ b => b}))
-	
+	// DESAFIO
+	method hayCompanieras() =  not todasLasBicis.map({ b => self.bicisCompanieras(b) }).isEmpty()	
+	method parejasDeCompanieras() {
+		const auxBicis = [] 
+		todasLasBicis.forEach({ 
+			biciOriginal =>  const listaBiciCompanieras = self.bicisCompanieras(biciOriginal)
+				listaBiciCompanieras.forEach({
+						bici => const parDeBicis = new ParDeBicis(biciUno = biciOriginal,biciDos = bici)
+						auxBicis.add(parDeBicis)
+					})
+				}) 
+		return auxBicis
+	}	
 }

@@ -69,7 +69,7 @@ describe "Test de depositos"{
 	}
 	test "Deposito Nocturno"{
 		assert.equals([bicicletaUno,bicicletaDos],depositoDos.bicisRapidas())
-		assert.equals(["Olmo","Legnano"],depositoDos.todasLasMarcas())
+		assert.equals(['Olmo','Legnano'],depositoDos.todasLasMarcas())
 		assert.that(depositoDos.esNocturno())
 		assert.that(depositoDos.tieneBiciParaLlevar(10))	
   		assert.notThat(depositoDos.tieneBiciParaLlevar(50))
@@ -79,7 +79,7 @@ describe "Test de depositos"{
 	}
 	test "Deposito no nocturno - biciLarga"{
 		assert.equals([bicicletaCuatro],depositoTres.bicisRapidas())
-		assert.equals(["Olmo"],depositoTres.todasLasMarcas())
+		assert.equals(['Olmo'],depositoTres.todasLasMarcas())
 		assert.notThat(depositoTres.esNocturno())
 		assert.notThat(depositoTres.tieneBiciParaLlevar(10))	
   		assert.notThat(depositoTres.tieneBiciParaLlevar(50))
