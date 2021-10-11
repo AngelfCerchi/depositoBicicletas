@@ -1,24 +1,28 @@
 class Farolitos{
-	const property peso = 0.5
-	const property carga = 0 
-	const property esLuminoso = true
+	method peso() = 0.5
+	method carga() = 0
+	method esLuminoso() = true
 }
 
 class Canastos{
-	var property volumen = null
-	const property peso = volumen/10
-	const property carga = volumen*2
-	const property esLuminoso = false
+	var property volumen 
+	method peso() = volumen/10
+	method carga() = volumen*2
+	method esLuminoso() = false
 }
+
 class Morrales{
-	var property largo = null //en cm
-	var property ojoDeGato = false 
-	const property peso = 1.2 //kg
-	const property carga = largo/3
-	const property esLuminoso = ojoDeGato 
+	var property largo
+	var property ojoDeGato 
+	method peso() = 1.2
+	method carga() = largo/3
+	method esLuminoso() = ojoDeGato 
 }
 
 /*
- * Para agregar otros accesorios se deberia crear una clase accesorios con las caracteristiscas que comparte
+ * Para agregar un nuevo accesorio es necesario mantener el polimorfismo para que se
+ * pueda utilizar al igual que los accesarios ya existentes.
+ * Además, es fundamental cumplir con el contrato de la clase Bicicletas ya que la misma 
+ * hace uso de los accesorios. 
  * 
  */
